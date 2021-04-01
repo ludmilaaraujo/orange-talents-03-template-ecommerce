@@ -1,5 +1,6 @@
 package br.com.treino.mercadoLivre.request;
 
+import br.com.treino.mercadoLivre.entidades.SenhaLimpa;
 import br.com.treino.mercadoLivre.entidades.Usuario;
 import com.sun.istack.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -18,12 +19,17 @@ public class UsuarioRequest {
 
     private LocalDateTime instante = LocalDateTime.now();
 
+    public String getLogin() {
+        return login;
+    }
+
     public UsuarioRequest(@NotBlank @Email String login, @Length(min = 6) String senha) {
         this.login = login;
         this.senha = senha;
     }
 
-    public Usuario coverteToEntity() {
-        return new Usuario(this.login, this.senha);
+    public Usuario toUsuario()
+    {
+        return new Usuario(login, new SenhaLimpa(senha));
     }
 }

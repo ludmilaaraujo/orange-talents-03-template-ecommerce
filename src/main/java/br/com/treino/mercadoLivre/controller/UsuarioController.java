@@ -2,7 +2,7 @@ package br.com.treino.mercadoLivre.controller;
 
 import br.com.treino.mercadoLivre.entidades.Usuario;
 import br.com.treino.mercadoLivre.request.UsuarioRequest;
-import br.com.treino.mercadoLivre.resporitory.UsuarioRepository;
+import br.com.treino.mercadoLivre.validator.UsuarioValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;

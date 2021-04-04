@@ -1,4 +1,4 @@
-package br.com.treino.mercadoLivre.controller;
+package br.com.treino.mercadoLivre.validator;
 
 import br.com.treino.mercadoLivre.entidades.Usuario;
 import br.com.treino.mercadoLivre.request.UsuarioRequest;

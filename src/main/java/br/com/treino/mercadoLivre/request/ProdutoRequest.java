@@ -37,9 +37,7 @@ public class ProdutoRequest {
     @Valid
     private Set<CaracteristicaRequest> caracteristicas;
 
-    public ProdutoRequest() {
 
-    }
     public ProdutoRequest(@NotNull Long idSubCategoria, String nomeProduto, @Positive int quantidade,
                           @NotBlank @Length(max = 1000) String descricao,
                           @Positive @NotNull BigDecimal valor, @NotNull Long idUsuario,
@@ -81,9 +79,5 @@ public class ProdutoRequest {
         }
         return resultados;
     }
-
-
-    public boolean verificaSeNumeroEhMaiorQueCem(Integer num) {
-        return num > 100;
-    }
 }
+

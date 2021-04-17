@@ -11,6 +11,8 @@ public class Caracteristica {
     private String nome;
     private String descricao;
 
+    public Caracteristica() {
+    }
 
     public Caracteristica(String nome, String descricao) {
         this.nome = nome;

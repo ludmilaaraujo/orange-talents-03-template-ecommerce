@@ -1,5 +1,6 @@
 package br.com.treino.mercadoLivre.entidades;
 
+import br.com.treino.mercadoLivre.response.UsuarioResponse;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,9 +26,9 @@ public class Usuario implements UserDetails {
     private LocalDateTime instante = LocalDateTime.now();
     private @Email @NotBlank String login;
     private @NotBlank @Length(min = 6) String senha;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> perfis = new ArrayList<>();
+
 
 
     public Usuario(@Email @NotBlank String login,
@@ -82,5 +83,9 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UsuarioResponse usuarioResponse(){
+        return new UsuarioResponse(this.login, this.instante);
     }
 }

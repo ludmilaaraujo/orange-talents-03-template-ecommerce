@@ -1,5 +1,8 @@
 package br.com.treino.mercadoLivre.entidades;
 
+import br.com.treino.mercadoLivre.response.CategoriaResponse;
+import br.com.treino.mercadoLivre.response.SubCategoriaResponse;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,6 +32,10 @@ public class SubCategoria {
     @Override
     public  String toString(){
         return "Autor [nomeSubCategoria=" + nomeSubCategoria + "]";
+    }
+
+    public SubCategoriaResponse subCategoriaResponse(){
+        return new SubCategoriaResponse(categoria.categoriaResponse(),this.nomeSubCategoria);
     }
 
 }

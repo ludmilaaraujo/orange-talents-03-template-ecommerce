@@ -1,5 +1,7 @@
 package br.com.treino.mercadoLivre.entidades;
 
+import br.com.treino.mercadoLivre.response.CaracteristicasResponse;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,5 +26,7 @@ public class Caracteristica {
         return "[nome : " + nome + " descricao : " + descricao + "]";
     }
 
-
+    public CaracteristicasResponse caracteristicasResponse(){
+        return new CaracteristicasResponse(this.nome, this.descricao);
+    }
 }

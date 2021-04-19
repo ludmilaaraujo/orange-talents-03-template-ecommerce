@@ -5,6 +5,8 @@ import br.com.treino.mercadoLivre.entidades.ImagemProduto;
 import br.com.treino.mercadoLivre.entidades.Produto;
 import br.com.treino.mercadoLivre.request.ImagensRequest;
 import br.com.treino.mercadoLivre.request.ProdutoRequest;
+import br.com.treino.mercadoLivre.response.ImagemProdutoResponse;
+import br.com.treino.mercadoLivre.response.ProdutoResponse;
 import br.com.treino.mercadoLivre.resporitory.ProdutoRepository;
 import br.com.treino.mercadoLivre.resporitory.SubCategoriaRepository;
 import br.com.treino.mercadoLivre.resporitory.UsuarioRepository;
@@ -36,20 +38,20 @@ public class ProdutoController {
 
     @PostMapping(value = "/produto")
     @Transactional
-    public String criaProduto(@RequestBody @Valid ProdutoRequest produtoRequest) {
+    public ProdutoResponse criaProduto(@RequestBody @Valid ProdutoRequest produtoRequest) {
         Produto produto = produtoRequest.converteToEntity(subCategoriaRepository,
                 usuarioRepository);
         produtoRepository.save(produto);
-        return produto.toString();
+        return produto.produtoResponse();
     }
     @PostMapping(value = "/produtos/{id}/imagens")
     @Transactional
-    public String adicionaImagem(@Valid @PathVariable ("id")Long id,
-                               ImagensRequest imagensRequest){
+    public ProdutoResponse adicionaImagem(@Valid @PathVariable ("id")Long id,
+                                                ImagensRequest imagensRequest){
         Produto produto = produtoRepository.getOne(id);
         List<String> links = baixarImagem.envia(imagensRequest.getImagens());
         produto.associarImagens(links);
         produtoRepository.save(produto);
-        return produto.toString();
+        return produto.produtoResponse();
     }
 }

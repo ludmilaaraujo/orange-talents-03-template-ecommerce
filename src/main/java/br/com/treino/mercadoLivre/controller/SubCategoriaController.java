@@ -2,6 +2,7 @@ package br.com.treino.mercadoLivre.controller;
 
 import br.com.treino.mercadoLivre.entidades.SubCategoria;
 import br.com.treino.mercadoLivre.request.SubCategoriaRequest;
+import br.com.treino.mercadoLivre.response.SubCategoriaResponse;
 import br.com.treino.mercadoLivre.resporitory.CategoriaRepository;
 import br.com.treino.mercadoLivre.resporitory.SubCategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class SubCategoriaController {
 
     @PostMapping (value = "/subCategoria")
     @Transactional
-    public String criaSubCategoria(@RequestBody @Valid SubCategoriaRequest subCategoriaRequest){
+    public SubCategoriaResponse criaSubCategoria(@RequestBody @Valid SubCategoriaRequest subCategoriaRequest){
         SubCategoria subCategoria = subCategoriaRequest.converteToEntity(categoriaRepository);
         subCategoriaRepository.save(subCategoria);
-        return subCategoria.toString();
+        return subCategoria.subCategoriaResponse();
     }
 
 }

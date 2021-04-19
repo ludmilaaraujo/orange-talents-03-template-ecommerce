@@ -11,7 +11,6 @@ public class CaracteristicaRequest {
     private String nome;
     @NotEmpty
     private String descricao;
-
     @Deprecated
     public CaracteristicaRequest() {
 
@@ -30,7 +29,7 @@ public class CaracteristicaRequest {
         return descricao;
     }
 
-    public Set<Caracteristica> converteToCaracttEntity(Set<CaracteristicaRequest> lista){
+    public Set<Caracteristica> converteToCaracteristicaEntity(Set<CaracteristicaRequest> lista){
         Set<Caracteristica> caracteristicas =  new HashSet<Caracteristica>();
         for (CaracteristicaRequest item: lista) {
             caracteristicas.add(new Caracteristica(item.getNome(), item.getDescricao()));

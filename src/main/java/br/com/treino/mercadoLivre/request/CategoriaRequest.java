@@ -5,7 +5,6 @@ import br.com.treino.mercadoLivre.entidades.Categoria;
 
 import javax.validation.constraints.NotBlank;
 
-
 public class CategoriaRequest {
     @NotBlank
     @UniqueValue(domainClass = Categoria.class, fieldName = "nome")

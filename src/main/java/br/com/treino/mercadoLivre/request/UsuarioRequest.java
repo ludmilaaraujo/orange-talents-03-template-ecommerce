@@ -16,7 +16,6 @@ public class UsuarioRequest {
     private String login;
     @Length(min = 6)
     private String senha;
-
     private LocalDateTime instante = LocalDateTime.now();
 
     public String getLogin() {

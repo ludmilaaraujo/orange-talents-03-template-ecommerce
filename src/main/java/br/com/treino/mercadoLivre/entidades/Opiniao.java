@@ -33,4 +33,8 @@ public class Opiniao {
         return new OpiniaoResponse(this.nota, this.titulo,
                 this.descricao, produto.produtoResponse());
     }
+
+    public Integer getNota() {
+        return nota;
+    }
 }

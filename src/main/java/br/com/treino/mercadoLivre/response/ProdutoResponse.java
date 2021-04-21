@@ -1,5 +1,6 @@
 package br.com.treino.mercadoLivre.response;
 
+import br.com.treino.mercadoLivre.entidades.Opiniao;
 import br.com.treino.mercadoLivre.request.CaracteristicaRequest;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ public class ProdutoResponse {
     private UsuarioResponse usuarioResponse;
     private Set<CaracteristicasResponse> caracteristicas;
     private Set<ImagemProdutoResponse> imagemProdutoResponses;
+    private Double mediaNota;
 
     public ProdutoResponse(SubCategoriaResponse subCategoriaResponse, String nomeProduto,
                            int quantidade, String descricao, BigDecimal valor,
@@ -29,6 +31,22 @@ public class ProdutoResponse {
         this.usuarioResponse = usuarioResponse;
         this.caracteristicas = caracteristicas;
         this.imagemProdutoResponses = imagemProdutoResponses;
+    }
+    public ProdutoResponse(SubCategoriaResponse subCategoriaResponse, String nomeProduto,
+                           int quantidade, String descricao, BigDecimal valor,
+                           UsuarioResponse usuarioResponse,
+                           Set<CaracteristicasResponse> caracteristicas,
+                           Set<ImagemProdutoResponse> imagemProdutoResponses,
+                           Double mediaNota) {
+        this.subCategoriaResponse = subCategoriaResponse;
+        this.nomeProduto = nomeProduto;
+        this.quantidade = quantidade;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.usuarioResponse = usuarioResponse;
+        this.caracteristicas = caracteristicas;
+        this.imagemProdutoResponses = imagemProdutoResponses;
+        this.mediaNota = mediaNota;
     }
 
     public ProdutoResponse() {
@@ -54,6 +72,7 @@ public class ProdutoResponse {
         return valor;
     }
 
+
     public UsuarioResponse getUsuarioResponse() {
         return usuarioResponse;
     }
@@ -64,5 +83,10 @@ public class ProdutoResponse {
 
     public Set<ImagemProdutoResponse> getImagemProdutoResponses() {
         return imagemProdutoResponses;
+
+    }
+
+    public Double getMediaNota() {
+        return mediaNota;
     }
 }

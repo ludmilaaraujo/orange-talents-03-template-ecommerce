@@ -4,6 +4,7 @@ import br.com.treino.mercadoLivre.request.CaracteristicaRequest;
 import br.com.treino.mercadoLivre.response.CaracteristicasResponse;
 import br.com.treino.mercadoLivre.response.ImagemProdutoResponse;
 import br.com.treino.mercadoLivre.response.ProdutoResponse;
+import br.com.treino.mercadoLivre.resporitory.OpiniaoRepository;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -77,4 +78,33 @@ public class Produto {
                 new ImagemProdutoResponse().imagemProdutoResponses(this.imagemProdutos));
     }
 
+    public ProdutoResponse produtoResponse(OpiniaoRepository opiniaoRepository) {
+        Double mediaNota = opiniaoRepository.mediaNota(id);
+        return new ProdutoResponse(subCategoria.subCategoriaResponse(),
+                this.nomeProduto, this.quantidade, this.descricao, this.valor,
+                usuario.usuarioResponse(), new CaracteristicasResponse().
+                caracteristicasResponseSet(this.caracteristicas),
+                new ImagemProdutoResponse().imagemProdutoResponses(this.imagemProdutos),
+                mediaNota);
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public Set<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
 }

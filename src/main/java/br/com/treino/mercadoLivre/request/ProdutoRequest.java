@@ -37,7 +37,6 @@ public class ProdutoRequest {
     @Valid
     private Set<CaracteristicaRequest> caracteristicas;
 
-
     public ProdutoRequest(@NotNull Long idSubCategoria, String nomeProduto, @Positive int quantidade,
                           @NotBlank @Length(max = 1000) String descricao,
                           @Positive @NotNull BigDecimal valor, @NotNull Long idUsuario,

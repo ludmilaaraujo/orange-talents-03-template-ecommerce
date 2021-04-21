@@ -1,11 +1,9 @@
 package br.com.treino.mercadoLivre.controller;
 
-import br.com.treino.mercadoLivre.component.BaixarImagem;
-import br.com.treino.mercadoLivre.entidades.ImagemProduto;
+import br.com.treino.mercadoLivre.component.UploaderImagem;
 import br.com.treino.mercadoLivre.entidades.Produto;
 import br.com.treino.mercadoLivre.request.ImagensRequest;
 import br.com.treino.mercadoLivre.request.ProdutoRequest;
-import br.com.treino.mercadoLivre.response.ImagemProdutoResponse;
 import br.com.treino.mercadoLivre.response.ProdutoResponse;
 import br.com.treino.mercadoLivre.resporitory.ProdutoRepository;
 import br.com.treino.mercadoLivre.resporitory.SubCategoriaRepository;
@@ -29,7 +27,7 @@ public class ProdutoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
-    private BaixarImagem baixarImagem;
+    private UploaderImagem uploaderImagem;
 
     @InitBinder(value = "produtoRequest")
     public void init(WebDataBinder webDataBinder){
@@ -46,10 +44,10 @@ public class ProdutoController {
     }
     @PostMapping(value = "/produtos/{id}/imagens")
     @Transactional
-    public ProdutoResponse adicionaImagem(@Valid @PathVariable ("id")Long id,
+    public ProdutoResponse adicionaImagem(@RequestBody @Valid @PathVariable ("id")Long id,
                                                 ImagensRequest imagensRequest){
         Produto produto = produtoRepository.getOne(id);
-        List<String> links = baixarImagem.envia(imagensRequest.getImagens());
+        List<String> links = uploaderImagem.envia(imagensRequest.getImagens());
         produto.associarImagens(links);
         produtoRepository.save(produto);
         return produto.produtoResponse();

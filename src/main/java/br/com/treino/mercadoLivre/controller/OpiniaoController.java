@@ -24,7 +24,7 @@ public class OpiniaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/opiniao")
+    @PostMapping("/{id}/imagens")
     @Transactional
     public OpiniaoResponse adicionaOpiniao(@RequestBody @Valid OpiniaoRequest opiniaoRequest) {
         Opiniao opiniao = opiniaoRequest.convetToEntity(produtoRepository, usuarioRepository);

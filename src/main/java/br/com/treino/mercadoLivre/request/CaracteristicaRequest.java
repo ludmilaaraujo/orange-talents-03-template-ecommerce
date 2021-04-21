@@ -13,7 +13,6 @@ public class CaracteristicaRequest {
     private String descricao;
     @Deprecated
     public CaracteristicaRequest() {
-
     }
 
     public CaracteristicaRequest(@NotEmpty String nome, @NotEmpty String descricao) {

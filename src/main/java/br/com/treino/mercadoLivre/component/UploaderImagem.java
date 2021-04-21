@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class BaixarImagem {
+public class UploaderImagem {
     public List<String> envia(List<MultipartFile> imagens) {
 
         List<String> links = new ArrayList<String>();

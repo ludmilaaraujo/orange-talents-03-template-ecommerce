@@ -30,7 +30,6 @@ public class Usuario implements UserDetails {
     private List<Perfil> perfis = new ArrayList<>();
 
 
-
     public Usuario(@Email @NotBlank String login,
             @Valid @NotNull SenhaLimpa senhaLimpa) {
         Assert.isTrue(StringUtils.hasLength(login), "email não pode ser em branco");
@@ -87,5 +86,9 @@ public class Usuario implements UserDetails {
 
     public UsuarioResponse usuarioResponse(){
         return new UsuarioResponse(this.login, this.instante);
+    }
+
+    public String getLogin() {
+        return login;
     }
 }

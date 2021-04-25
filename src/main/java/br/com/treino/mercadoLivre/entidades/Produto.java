@@ -5,8 +5,11 @@ import br.com.treino.mercadoLivre.response.CaracteristicasResponse;
 import br.com.treino.mercadoLivre.response.ImagemProdutoResponse;
 import br.com.treino.mercadoLivre.response.ProdutoResponse;
 import br.com.treino.mercadoLivre.resporitory.OpiniaoRepository;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
@@ -107,4 +110,18 @@ public class Produto {
     public Set<Caracteristica> getCaracteristicas() {
         return caracteristicas;
     }
+
+    public boolean abateEstoque(@Positive int quantidade) {
+        Assert.isTrue(quantidade > 0, "A quantidade não pode ser zero");
+
+        if(quantidade <= this.quantidade){
+            this.quantidade-=quantidade;
+            return true;
+        }
+        return false;
+    }
+    public boolean temEstoque(){
+        return quantidade > 0;
+    }
 }
+

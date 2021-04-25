@@ -32,7 +32,4 @@ public class UsuarioController {
         manager.persist(usuario);
         return usuario.toString();
     }
-
-
-
 }

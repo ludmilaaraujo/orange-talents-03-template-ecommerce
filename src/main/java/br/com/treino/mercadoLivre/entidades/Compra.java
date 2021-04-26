@@ -1,6 +1,7 @@
 package br.com.treino.mercadoLivre.entidades;
 
 import br.com.treino.mercadoLivre.finalizaCompra.GatewayPagamento;
+import br.com.treino.mercadoLivre.request.PosVendaRequest;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -21,6 +22,8 @@ public class Compra {
     private Usuario usuario;
     @Enumerated @NotNull
     private GatewayPagamento gatewayPagamento;
+    @Enumerated
+    private StatusPagamento statusPagamento;
 
     public Compra(@NotNull @Valid Produto produtoQueSeraComprado,
                   @Positive Integer quantidade, @NotNull @Valid Usuario usuario,
@@ -33,6 +36,12 @@ public class Compra {
 
     public String getEmailVendedor(){
         return usuario.getLogin();
+    }
+
+    public String getEmailComprador(){ return usuario.getLogin();}
+
+    public Produto getProdutoQueSeraComprado() {
+        return produtoQueSeraComprado;
     }
 
 }

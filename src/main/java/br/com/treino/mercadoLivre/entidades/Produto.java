@@ -34,6 +34,7 @@ public class Produto {
     private Set<ImagemProduto> imagemProdutos = new HashSet<>();
     @OneToMany(cascade = CascadeType.MERGE)
     private Set<Opiniao> opinioes = new HashSet<>();
+    private Integer ranking;
 
     public Produto() {
     }
@@ -120,8 +121,15 @@ public class Produto {
         }
         return false;
     }
+
+
     public boolean temEstoque(){
         return quantidade > 0;
     }
+
+    public void sobeNoRanking(){
+        this.ranking += 1;
+    }
+
 }
 

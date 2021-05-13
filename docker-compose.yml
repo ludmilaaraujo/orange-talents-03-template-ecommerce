@@ -1,0 +1,44 @@
+version: '3'
+services:
+#  nginx:
+#    build:
+#      dockerfile: ./docker/nginx.dockerfile
+#      context: .
+#    image: douglasq/nginx
+#    container_name: nginx
+#    ports:
+#      - "80:80"
+#    networks:
+#      - production-network
+#    depends_on:
+#      - "node1"
+  mysql-docker-container:
+    image: mysql:latest
+    restart: always
+    networks:
+      - spring-boot-mysql-network
+    environment:
+        MYSQL_DATABASE: mercadolivre
+        MYSQL_USER: ludmila
+        MYSQL_PASSWORD: 6996Ludmila
+        MYSQL_ROOT_PASSWORD: 6996Ludmila
+    ports:
+      - 3333:3306
+    container_name: banco_de_dados
+
+  node1:
+    build:
+      dockerfile: ./docker/mercadoLivre.dockerfile
+      context: .
+    networks:
+      - spring-boot-mysql-network
+    image: openjdk
+    container_name: node1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-docker-container
+
+networks:
+  spring-boot-mysql-network:
+    driver: bridge
